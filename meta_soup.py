@@ -6,12 +6,15 @@ from datetime import datetime
 
 from paho.mqtt import client as mqtt_client
 
-ICAO = ['EDAC',	'EDAH',	'EDBC',	'EDDB',	'EDDC',	'EDDE',	'EDDF',	'EDDG',	'EDDH',	'EDDK',	'EDDL',	'EDDM',	'EDDN',	'EDDP',	'EDDR',	'EDDS',	'EDDV',	'EDDW',	'EDFH',	'EDFM',	'EDGS',	'EDHI',	'EDHK',	'EDHL',	'EDJA',	'EDLN',	'EDLP',	'EDLV',	'EDLW',	'EDMA',	'EDMO',	'EDNY',	'EDQM',	'EDSB',	'EDTL',	'EDTY',	'EDVE',	'EDVK',	'EDXW',	'ETAD',	'ETAR',	'ETEB',	'ETGG',	'ETHA',	'ETHB',	'ETHC',	'ETHF',	'ETHL',	'ETHN',	'ETHS',	'ETIC',	'ETIH',	'ETIK',	'ETMN',	'ETND',	'ETNG',	'ETNH',	'ETNL',	'ETNN',	'ETNS',	'ETNT',	'ETNW',	'ETOU',	'ETSB',	'ETSH',	'ETSI',	'ETSL',	'ETSN',	'ETWM']
+#ICAO = ['EDAC',	'EDAH',	'EDBC',	'EDDB',	'EDDC',	'EDDE',	'EDDF',	'EDDG',	'EDDH',	'EDDK',	'EDDL',	'EDDM',	'EDDN',	'EDDP',	'EDDR',	'EDDS',	'EDDV',	'EDDW',	'EDFH',	'EDFM',	'EDGS',	'EDHI',	'EDHK',	'EDHL',	'EDJA',	'EDLN',	'EDLP',	'EDLV',	'EDLW',	'EDMA',	'EDMO',	'EDNY',	'EDQM',	'EDSB',	'EDTL',	'EDTY',	'EDVE',	'EDVK',	'EDXW',	'ETAD',	'ETAR',	'ETEB',	'ETGG',	'ETHA',	'ETHB',	'ETHC',	'ETHF',	'ETHL',	'ETHN',	'ETHS',	'ETIC',	'ETIH',	'ETIK',	'ETMN',	'ETND',	'ETNG',	'ETNH',	'ETNL',	'ETNN',	'ETNS',	'ETNT',	'ETNW',	'ETOU',	'ETSB',	'ETSH',	'ETSI',	'ETSL',	'ETSN',	'ETWM']
 ICAO = ['EDDR','ETAR','EDFH','EDDF','EDFM','EDSB','EDDS','EDTY','ETHN']
 
 VFR_STATUS = "NONE"
 
-# current date and time
+broker = '10.10.11.151'
+port = 1883
+# username = 'emqx'
+# password = 'public'
 
 
 def getVfrStatus(ICAO):
@@ -43,7 +46,7 @@ def getVfrStatus(ICAO):
  
 
     #print(len(raw_data))
-    if(time_diff.total_seconds() < 86400):
+    if(time_diff.total_seconds() < 3600):
         if(len(raw_data) >= 18):
             if(raw_data[15].text == "ceiling and visibility are OK"):
                 CEIL = int(10000)
@@ -82,13 +85,9 @@ def getVfrStatus(ICAO):
     
     return VFR_STATUS
 
-broker = '10.10.11.151'
-port = 1883
-
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
-# username = 'emqx'
-# password = 'public'
+
 
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
@@ -127,8 +126,6 @@ def publish(client, airports_count, status):
         else:
             print(f"Failed to send message to topic {topic}")
             return
-
-
 
 def run():
     client = connect_mqtt()
