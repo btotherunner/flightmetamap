@@ -32,13 +32,13 @@ def getVfrStatus(ICAO):
 
 
     t1 = datetime(year=2023, month=1, day=int(meta_date), hour=int(meta_hour), minute=int(meta_minute))
-    print(t1)
+    # print(t1)
     t2 = datetime(year=2023, month=1, day=int(now.strftime("%d")), hour=int(now.strftime("%H")), minute=int(now.strftime("%M")))
-    print(t2)
+    # print(t2)
 
     time_diff = t2 - t1
     #print("Zeitdifferenz:")
-    print(time_diff.total_seconds())
+    # print(time_diff.total_seconds())
  
     s1 = now.strftime("%m/%d/%Y, %H:%M:%S")
     # mm/dd/YY H:M:S format
@@ -57,11 +57,11 @@ def getVfrStatus(ICAO):
                 CEIL = int(split_ceil[0])
         else:
             VFR_STATUS = "NONE"
-            print(ICAO, VFR_STATUS) 
+            #print(ICAO, VFR_STATUS) 
             return VFR_STATUS
     else:
         VFR_STATUS = "NONE"
-        print(ICAO, VFR_STATUS) 
+        #print(ICAO, VFR_STATUS) 
         return VFR_STATUS
     
     split_vis = raw_data[13].text.split()
