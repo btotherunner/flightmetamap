@@ -6,7 +6,7 @@ from datetime import datetime
 
 from paho.mqtt import client as mqtt_client
 
-#ICAO = ['EDAC',	'EDAH',	'EDBC',	'EDDB',	'EDDC',	'EDDE',	'EDDF',	'EDDG',	'EDDH',	'EDDK',	'EDDL',	'EDDM',	'EDDN',	'EDDP',	'EDDR',	'EDDS',	'EDDV',	'EDDW',	'EDFH',	'EDFM',	'EDGS',	'EDHI',	'EDHK',	'EDHL',	'EDJA',	'EDLN',	'EDLP',	'EDLV',	'EDLW',	'EDMA',	'EDMO',	'EDNY',	'EDQM',	'EDSB',	'EDTL',	'EDTY',	'EDVE',	'EDVK',	'EDXW',	'ETAD',	'ETAR',	'ETEB',	'ETGG',	'ETHA',	'ETHB',	'ETHC',	'ETHF',	'ETHL',	'ETHN',	'ETHS',	'ETIC',	'ETIH',	'ETIK',	'ETMN',	'ETND',	'ETNG',	'ETNH',	'ETNL',	'ETNN',	'ETNS',	'ETNT',	'ETNW',	'ETOU',	'ETSB',	'ETSH',	'ETSI',	'ETSL',	'ETSN',	'ETWM']
+#ICAO = ['EDAC','EDAH',	'EDBC',	'EDDB',	'EDDC',	'EDDE',	'EDDF',	'EDDG',	'EDDH',	'EDDK',	'EDDL',	'EDDM',	'EDDN',	'EDDP',	'EDDR',	'EDDS',	'EDDV',	'EDDW',	'EDFH',	'EDFM',	'EDGS',	'EDHI',	'EDHK',	'EDHL',	'EDJA',	'EDLN',	'EDLP',	'EDLV',	'EDLW',	'EDMA',	'EDMO',	'EDNY',	'EDQM',	'EDSB',	'EDTL',	'EDTY',	'EDVE',	'EDVK',	'EDXW',	'ETAD',	'ETAR',	'ETEB',	'ETGG',	'ETHA',	'ETHB',	'ETHC',	'ETHF',	'ETHL',	'ETHN',	'ETHS',	'ETIC',	'ETIH',	'ETIK',	'ETMN',	'ETND',	'ETNG',	'ETNH',	'ETNL',	'ETNN',	'ETNS',	'ETNT',	'ETNW',	'ETOU',	'ETSB',	'ETSH',	'ETSI',	'ETSL',	'ETSN',	'ETWM']
 ICAO = ['EDDR','ETAR','EDFH','EDDF','EDFM','EDSB','EDDS','EDTY','ETHN']
 
 VFR_STATUS = "NONE"
@@ -126,6 +126,7 @@ def publish(client, airports_count, status):
         else:
             print(f"Failed to send message to topic {topic}")
             return
+
 
 def run():
     client = connect_mqtt()
